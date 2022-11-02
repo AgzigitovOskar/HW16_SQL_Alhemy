@@ -80,7 +80,7 @@ def work_user(bid):
 
     if request.method == 'DELETE':
         try:
-            db.session.query(User).get(bid).delete()
+            db.session.query(User).filter(User.id == bid).delete()     #.get(bid).delete()
             db.session.commit()
         except Exception as e:
             print(e)
@@ -136,7 +136,7 @@ def work_order(bid):
             )
 
         return app.response_class(
-            json.dumps(result, ensure_ascii=False),
+            json.dumps(result),
             mimetype="application/json",
             status=200
         )
@@ -144,7 +144,7 @@ def work_order(bid):
     if request.method == 'PUT':
         data = request.json
         try:
-            user = db.session.query(User).get(bid)
+            user = db.session.query(Order).get(bid)
             user.id = data.get("id")
             user.order_id = data.get("order_id")
             user.executor_id = data.get("executor_id")
@@ -163,7 +163,7 @@ def work_order(bid):
 
     if request.method == 'DELETE':
         try:
-            db.session.query(User).get(bid).delete()
+            db.session.query(Order).filter(Order.id == bid).delete()
             db.session.commit()
         except Exception as e:
             print(e)
@@ -219,7 +219,7 @@ def work_offer(bid):
             )
 
         return app.response_class(
-            json.dumps(result, ensure_ascii=False),
+            json.dumps(result),
             mimetype="application/json",
             status=200
         )
@@ -227,7 +227,7 @@ def work_offer(bid):
     if request.method == 'PUT':
         data = request.json
         try:
-            user = db.session.query(User).get(bid)
+            user = db.session.query(Offer).get(bid)
             user.id = data.get("id")
             user.order_id = data.get("order_id")
             user.executor_id = data.get("executor_id")
@@ -246,7 +246,7 @@ def work_offer(bid):
 
     if request.method == 'DELETE':
         try:
-            db.session.query(User).get(bid).delete()
+            db.session.query(Offer).filter(Offer.id == bid).delete()
             db.session.commit()
         except Exception as e:
             print(e)
@@ -260,4 +260,4 @@ def work_offer(bid):
 
 
 if __name__ == '__main__':
-    app.run("localhost", port=8080, debug=True)
+    app.run("localhost", port=8085, debug=True)

@@ -63,9 +63,9 @@ def create_app():
         db.init_app(app)
         db.drop_all()
         db.create_all()
-        offer = load_offer("/Users/Oskar/PycharmProjects/Skypro/HW_16_SQL_Alhemy/data/offers.json")
-        user = load_user("/Users/Oskar/PycharmProjects/Skypro/HW_16_SQL_Alhemy/data/users.json")
-        order = load_order("/Users/Oskar/PycharmProjects/Skypro/HW_16_SQL_Alhemy/data/orders.json")
+        offer = load_offer("../data/offers.json")
+        user = load_user("../data/users.json")
+        order = load_order("../data/orders.json")
 
     return app
 
